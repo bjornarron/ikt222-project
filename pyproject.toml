@@ -2,7 +2,7 @@
 name = "ikt-222-solution"
 version = "0.1.0"
 description = ""
-authors = ["Student Mc Doodle <noreply@no-email.com>"]
+authors = ["Bjørnar Fauske Røn <bjornar.f.r@gmail.com>", "Andreas Egge Lye <andreas.eggelye@gmail.com>","Helene Abildsnes <heleneabildsnes@hotmail.com"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
