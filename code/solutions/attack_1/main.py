@@ -5,7 +5,7 @@ import string
 url = 'https://portal.regjeringen.uiaikt.no/login'
 
 # Username for which to guess the password
-username = 'admin'
+username = 'jonas.dahl'
 
 # Function to send a password guess and retrieve the response time
 def send_password_guess(guess):
